@@ -23,7 +23,7 @@ function Navbar() {
         <Link to="/about" className={styles.aboutLink}>
           ABOUT
         </Link>
-        <Link to="/items" className={styles.borrowLink}>
+        <Link to="/projects" className={styles.borrowLink}>
           PROJECTS
         </Link>
         {/* {isAuthenticated && (
