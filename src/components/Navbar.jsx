@@ -5,9 +5,8 @@ import { Button } from "@mantine/core";
 import styles from "../styles/modules/Navbar.module.css";
 /* import handshakeBlue from "../assets/images/handshake_blue.png";
 import handshakeBlack from "../assets/images/handshake_black.png"; */
-import { SessionContext } from "../contexts/SessionContext";
-import SearchBar from "./SearchBar";
-
+/* import { SessionContext } from "../contexts/SessionContext";
+ */
 function Navbar() {
   return (
     <div className={styles.navbar}>
@@ -40,7 +39,7 @@ function Navbar() {
       </div>
 
       <div className={styles.buttonContainer}>
-        {!isAuthenticated ? (
+        {/*  {!isAuthenticated ? (
           <>
             <Button
               component={Link}
@@ -83,7 +82,7 @@ function Navbar() {
               Log Out
             </Button>
           </>
-        )}
+        )} */}
       </div>
     </div>
   );

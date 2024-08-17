@@ -1,5 +1,15 @@
+import Navbar from "./components/Navbar";
+import { Route, Routes } from "react-router-dom";
+
 function App() {
-  return <>Ready to code with Mantine, a router would be nice in there 😺</>
+  return (
+    <>
+      <Navbar />
+      <main>
+        <Routes></Routes>
+      </main>
+    </>
+  );
 }
 
-export default App
+export default App;
