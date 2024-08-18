@@ -1,0 +1,21 @@
+.container {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center {
+  text-align: center;
+  flex-direction: column;
+}
+
+.logo {
+  width: 700px;
+  height: auto;
+  margin-bottom: 0;
+}
+
+.loginLink {
+  text-decoration: none;
+}
