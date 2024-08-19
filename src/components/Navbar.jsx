@@ -3,22 +3,22 @@
 import { Link } from "react-router-dom";
 import { Button } from "@mantine/core";
 import styles from "../styles/modules/Navbar.module.css";
-/* import handshakeBlue from "../assets/images/handshake_blue.png";
-import handshakeBlack from "../assets/images/handshake_black.png"; */
+import hand from "../assets/hand.png";
+import hand1 from "../assets/hand1.png";
 /* import { SessionContext } from "../contexts/SessionContext";
  */
 function Navbar() {
   return (
     <div className={styles.navbar}>
-      {/*     <Link to="/" className={styles.navLink}>
+      <Link to="/" className={styles.navLink}>
         <img
-          src={handshakeBlue}
+          src={hand}
           alt="Home"
           className={styles.navImage}
-          onMouseEnter={(e) => (e.currentTarget.src = handshakeBlack)}
-          onMouseLeave={(e) => (e.currentTarget.src = handshakeBlue)}
+          onMouseEnter={(e) => (e.currentTarget.src = hand1)}
+          onMouseLeave={(e) => (e.currentTarget.src = hand)}
         />
-      </Link> */}
+      </Link>
       <div className={styles.leftSideLinks}>
         <Link to="/about" className={styles.aboutLink}>
           ABOUT
