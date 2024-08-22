@@ -96,6 +96,15 @@ function LoginPage() {
           >
             {loading ? "Logging in..." : "Login"}
           </Button>
+          <Button
+            fullWidth
+            mt="xl"
+            //       type="submit"
+            color="#224eff"
+            disabled={loading}
+          >
+            Create Account to see my Projects
+          </Button>
         </form>
       </Paper>
     </Container>
