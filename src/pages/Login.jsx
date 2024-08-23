@@ -5,7 +5,6 @@ import {
   Paper,
   Title,
   Container,
-  Text,
 } from "@mantine/core";
 import { useState, useContext, useEffect } from "react";
 import { SessionContext } from "../contexts/SessionContext";
@@ -68,13 +67,47 @@ function LoginPage() {
   }
 
   return (
-    <Paper shadow="lg" radius="xl" p="xl">
-      <Text>Paper is the most basic ui component</Text>
-      <Text>
-        Use it to create cards, dropdowns, modals and other components that
-        require background with shadow
-      </Text>
-    </Paper>
+    <Container size={420} my={40}>
+      <Title align="center">Login</Title>
+      <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+        <form onSubmit={handleSubmit}>
+          {error && <p style={{ color: "red" }}>{error}</p>}
+          <TextInput
+            label="Username"
+            placeholder="Your username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <PasswordInput
+            label="Password"
+            placeholder="Your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            mt="md"
+          />
+          <Button
+            fullWidth
+            mt="xl"
+            type="submit"
+            color="#224eff"
+            disabled={loading}
+          >
+            {loading ? "Logging in..." : "Login"}
+          </Button>
+          <Button
+            fullWidth
+            mt="xl"
+            //       type="submit"
+            color="#224eff"
+            disabled={loading}
+          >
+            Create New Account
+          </Button>
+        </form>
+      </Paper>
+    </Container>
   );
 }
 
