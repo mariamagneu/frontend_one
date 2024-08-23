@@ -66,6 +66,9 @@ function LoginPage() {
     return <div>Loading...</div>;
   }
 
+  const handleCreateNewAccount = () => {
+    navigate("/signup");
+  };
   return (
     <Container size={420} my={40}>
       <Title align="center">Login</Title>
@@ -99,7 +102,7 @@ function LoginPage() {
           <Button
             fullWidth
             mt="xl"
-            //       type="submit"
+            onClick={handleCreateNewAccount}
             color="#224eff"
             disabled={loading}
           >
