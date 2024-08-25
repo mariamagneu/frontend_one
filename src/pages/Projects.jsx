@@ -1,11 +1,12 @@
 import { useEffect, useContext, useState } from "react";
 import ProjectCard from "../components/ProjectCard";
+import AddProjectForm from "../components/AddProjectForm";
 import styles from "../styles/modules/Projects.module.css";
 import { SessionContext } from "../contexts/SessionContext";
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
-  const { userId } = useContext(SessionContext);
+  const { userRole } = useContext(SessionContext);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -28,6 +29,9 @@ const Projects = () => {
 
   return (
     <div className={styles.page}>
+      {/* Conditionally render the form if the user is an admin */}
+      {userRole === "Admin" && <AddProjectForm />}
+
       <div className={styles.container}>
         {projects.map((project) => (
           <ProjectCard key={project._id} project={project} />
