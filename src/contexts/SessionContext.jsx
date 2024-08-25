@@ -8,6 +8,7 @@ const SessionContextProvider = ({ children }) => {
   const [userId, setUserId] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [userRole, setUserRole] = useState("User");
   const navigate = useNavigate();
 
   const removeToken = () => {
@@ -27,10 +28,10 @@ const SessionContextProvider = ({ children }) => {
       );
       if (response.status === 200) {
         const data = await response.json();
-        console.log("Verify Token Response:", data); // Log the response
         setToken(tokenToVerify);
         setUserId(data.userId);
         setIsAuthenticated(true);
+        setUserRole(data.role);
       } else {
         removeToken();
         setIsAuthenticated(false);
@@ -57,7 +58,6 @@ const SessionContextProvider = ({ children }) => {
     if (token) {
       window.localStorage.setItem("authToken", token);
       verifyToken(token);
-      //the response of verifyToken(token) will give me the userId
     }
   }, [token]);
 
@@ -76,6 +76,7 @@ const SessionContextProvider = ({ children }) => {
         isLoading,
         token,
         userId,
+        userRole,
         setToken,
         handleLogout,
       }}
