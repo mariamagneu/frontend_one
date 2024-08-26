@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useNavigate } from "react-router-dom";
-import styles from "../styles/AddProjectForm.module.css";
+import styles from "../styles/modules/AddProjectForm.module.css";
 
 function AddProjectForm() {
   const navigate = useNavigate();
@@ -30,8 +30,6 @@ function AddProjectForm() {
       website: (value) => (value ? null : "Website is required"),
       repos: (value) =>
         value.length > 0 ? null : "At least one repo URL is required",
-      technology: (value) =>
-        value ? null : "Technology information is required",
       status: (value) => (value ? null : "Status is required"),
       author: (value) => (value ? null : "Author type is required"),
     },
@@ -113,18 +111,11 @@ function AddProjectForm() {
         placeholder="Enter the project website URL"
         {...form.getInputProps("website")}
       />
-      <MultiSelect
-        label="Repositories"
+      <TextInput
         withAsterisk
+        label="Repositories"
         placeholder="Enter repository URLs"
-        data={form.values.repos}
-        creatable
-        searchable
-        getCreateLabel={(query) => `+ Add ${query}`}
-        onCreate={(query) =>
-          form.setFieldValue("repos", [...form.values.repos, query])
-        }
-        {...form.getInputProps("repos")}
+        {...form.getInputProps("repository")}
       />
       <Select
         label="Technology"
