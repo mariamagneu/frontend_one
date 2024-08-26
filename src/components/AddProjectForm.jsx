@@ -19,8 +19,8 @@ function AddProjectForm() {
     initialValues: {
       title: "",
       website: "",
-      repos: [],
-      technology: "",
+      repos: [], // Start as an empty array
+      technology: "", // Start as an empty string or a valid default
       status: "",
       author: "",
       collaborators: "",
@@ -35,7 +35,7 @@ function AddProjectForm() {
     },
   });
 
-  useEffect(() => {
+  /*   useEffect(() => {
     const fetchTechnologies = async () => {
       try {
         const response = await fetch(
@@ -58,7 +58,7 @@ function AddProjectForm() {
     };
 
     fetchTechnologies();
-  }, []);
+  }, []); */
 
   const handleSubmit = async (values) => {
     try {
@@ -115,7 +115,7 @@ function AddProjectForm() {
         withAsterisk
         label="Repositories"
         placeholder="Enter repository URLs"
-        {...form.getInputProps("repository")}
+        {...form.getInputProps("repos")}
       />
       <Select
         label="Technology"
