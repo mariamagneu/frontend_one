@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import {
   Select,
   Button,
-  Checkbox,
-  Group,
   TextInput,
-  MultiSelect,
+  Group,
+  Textarea, // Import Textarea for the description
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useNavigate } from "react-router-dom";
@@ -18,47 +17,23 @@ function AddProjectForm() {
   const form = useForm({
     initialValues: {
       title: "",
+      description: "", // Add description here
       website: "",
-      repos: [], // Start as an empty array
-      technology: "", // Start as an empty string or a valid default
+      repos: "", // Make sure repos is a string as expected by your schema
+      technology: "",
       status: "",
       author: "",
       collaborators: "",
     },
     validate: {
       title: (value) => (value ? null : "Title is required"),
+      description: (value) => (value ? null : "Description is required"),
       website: (value) => (value ? null : "Website is required"),
-      repos: (value) =>
-        value.length > 0 ? null : "At least one repo URL is required",
+      repos: (value) => (value ? null : "At least one repo URL is required"),
       status: (value) => (value ? null : "Status is required"),
       author: (value) => (value ? null : "Author type is required"),
     },
   });
-
-  /*   useEffect(() => {
-    const fetchTechnologies = async () => {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/technologies`
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch technologies");
-        }
-        const data = await response.json();
-
-        // Map the fetched data to match the format expected by the Select component
-        const options = data.map((tech) => ({
-          value: tech._id,
-          label: tech.title,
-        }));
-        setTechnologyOptions(options);
-      } catch (error) {
-        console.error("Error fetching technologies:", error);
-      }
-    };
-
-    fetchTechnologies();
-  }, []); */
 
   const handleSubmit = async (values) => {
     try {
@@ -69,7 +44,7 @@ function AddProjectForm() {
       }
 
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/projects`,
+        `${import.meta.env.VITE_API_URL}/api/admin/projects`,
         {
           method: "POST",
           headers: {
@@ -104,6 +79,12 @@ function AddProjectForm() {
         label="Project Title"
         placeholder="Enter your project title"
         {...form.getInputProps("title")}
+      />
+      <Textarea // Add description field
+        withAsterisk
+        label="Description"
+        placeholder="Enter a brief project description"
+        {...form.getInputProps("description")}
       />
       <TextInput
         withAsterisk
