@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Select,
-  Button,
-  TextInput,
-  Group,
-  Textarea, // Import Textarea for the description
-} from "@mantine/core";
+import { Select, Button, TextInput, Group, Textarea } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/modules/AddProjectForm.module.css";
@@ -17,9 +11,9 @@ function AddProjectForm() {
   const form = useForm({
     initialValues: {
       title: "",
-      description: "", // Add description here
+      description: "",
       website: "",
-      repos: "", // Make sure repos is a string as expected by your schema
+      repos: "",
       technology: "",
       status: "",
       author: "",
@@ -35,12 +29,43 @@ function AddProjectForm() {
     },
   });
 
+  useEffect(() => {
+    // Fetch technologies from the API
+    const fetchTechnologies = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/technologies`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch technologies");
+        }
+        const data = await response.json();
+
+        // Map the fetched data to match the format expected by the Select component
+        const options = data.map((tech) => ({
+          value: tech._id,
+          label: tech.title,
+        }));
+        setTechnologyOptions(options);
+      } catch (error) {
+        console.error("Error fetching technologies:", error);
+      }
+    };
+
+    fetchTechnologies();
+  }, []);
+
   const handleSubmit = async (values) => {
     try {
       const token = localStorage.getItem("authToken");
       if (!token) {
         console.error("No authentication token found");
         throw new Error("No authentication token found");
+      }
+
+      if (!technologyOptions.length) {
+        console.error("No technology options available");
+        throw new Error("No technology options available");
       }
 
       const response = await fetch(
@@ -80,7 +105,7 @@ function AddProjectForm() {
         placeholder="Enter your project title"
         {...form.getInputProps("title")}
       />
-      <Textarea // Add description field
+      <Textarea
         withAsterisk
         label="Description"
         placeholder="Enter a brief project description"
@@ -101,7 +126,11 @@ function AddProjectForm() {
       <Select
         label="Technology"
         withAsterisk
-        placeholder="Select the main technology"
+        placeholder={
+          technologyOptions.length
+            ? "Select the main technology"
+            : "No technologies available"
+        }
         data={technologyOptions}
         {...form.getInputProps("technology")}
       />
