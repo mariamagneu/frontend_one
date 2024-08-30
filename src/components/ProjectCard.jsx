@@ -7,8 +7,9 @@ import { SessionContext } from "../contexts/SessionContext";
 const ProjectCard = ({ project }) => {
   const {
     title,
+    imageUrl,
     description,
-    technology, // This might be an object
+    technology,
     repos,
     status,
     _id,
@@ -36,8 +37,7 @@ const ProjectCard = ({ project }) => {
   return (
     <div className={styles.card}>
       <div className={styles.technologyLabel}>{technologyTitle}</div>
-      {/* Uncomment if you have images for projects */}
-      {/* <img src={imageUrl} alt={title} className={styles.image} /> */}
+      <img src={imageUrl} alt={title} className={styles.image} />
       <div className={styles.details}>
         <div className={styles.titleContainer}>
           <h2 className={styles.title}>{title}</h2>
