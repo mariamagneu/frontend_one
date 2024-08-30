@@ -18,6 +18,7 @@ function AddProjectForm() {
   const form = useForm({
     initialValues: {
       title: "",
+      imageUrl: "",
       description: "",
       website: "",
       repos: "",
@@ -110,6 +111,12 @@ function AddProjectForm() {
         withAsterisk
         label="Project Title"
         placeholder="Enter your project title"
+        {...form.getInputProps("title")}
+      />
+      <TextInput
+        withAsterisk
+        label="Image URL"
+        placeholder="Enter your Image URL"
         {...form.getInputProps("title")}
       />
       <Textarea
