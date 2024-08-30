@@ -14,7 +14,7 @@ function AddProjectForm() {
       description: "",
       website: "",
       repos: "",
-      technology: "",
+      technology: [],
       status: "",
       author: "",
       collaborators: "",
@@ -123,12 +123,12 @@ function AddProjectForm() {
         placeholder="Enter repository URLs"
         {...form.getInputProps("repos")}
       />
-      <Select
+      <MultiSelect
         label="Technology"
         withAsterisk
         placeholder={
           technologyOptions.length
-            ? "Select the main technology"
+            ? "Select the technologies used"
             : "No technologies available"
         }
         data={technologyOptions}
