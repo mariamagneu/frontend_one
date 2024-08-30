@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Select, Button, TextInput, Group, Textarea } from "@mantine/core";
+import {
+  MultiSelect,
+  Select,
+  Button,
+  TextInput,
+  Group,
+  Textarea,
+} from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/modules/AddProjectForm.module.css";
