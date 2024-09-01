@@ -64,8 +64,6 @@ function AddProjectForm() {
   }, []);
 
   const handleSubmit = async (values) => {
-    values.imageUrl = "https://example.com/static-image-url.jpg"; // Set a static image URL
-
     try {
       const token = localStorage.getItem("authToken");
       if (!token) {
