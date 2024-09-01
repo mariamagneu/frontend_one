@@ -9,6 +9,7 @@ const SessionContextProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [userRole, setUserRole] = useState("User");
+  const [technologies, setTechnologies] = useState([]);
   const navigate = useNavigate();
 
   const removeToken = () => {
@@ -68,6 +69,24 @@ const SessionContextProvider = ({ children }) => {
     setIsAuthenticated(false);
     navigate("/");
   };
+  seEffect(() => {
+    const fetchTechnologies = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/technologies`
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setTechnologies(data);
+      } catch (error) {
+        console.error("Error fetching technologies:", error);
+      }
+    };
+
+    fetchTechnologies();
+  }, []);
 
   return (
     <SessionContext.Provider
@@ -79,6 +98,7 @@ const SessionContextProvider = ({ children }) => {
         userRole,
         setToken,
         handleLogout,
+        technologies,
       }}
     >
       {children}
