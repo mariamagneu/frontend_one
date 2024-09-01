@@ -64,6 +64,8 @@ function AddProjectForm() {
   }, []);
 
   const handleSubmit = async (values) => {
+    values.imageUrl = "https://example.com/static-image-url.jpg"; // Set a static image URL
+
     try {
       const token = localStorage.getItem("authToken");
       if (!token) {
@@ -84,7 +86,7 @@ function AddProjectForm() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(values),
+          body: JSON.stringify(values), // Ensure `imageUrl` is part of `values`
         }
       );
 
@@ -117,7 +119,7 @@ function AddProjectForm() {
         withAsterisk
         label="Image URL"
         placeholder="Enter your Image URL"
-        {...form.getInputProps("title")}
+        {...form.getInputProps("imageUrl")}
       />
       <Textarea
         withAsterisk
