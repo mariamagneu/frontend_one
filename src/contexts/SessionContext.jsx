@@ -9,7 +9,7 @@ const SessionContextProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [userRole, setUserRole] = useState("User");
-  const [technologies, setTechnologies] = useState([]);
+  const [fetchedTechnologies, setFetchedTechnologies] = useState([]);
   const navigate = useNavigate();
 
   const removeToken = () => {
@@ -69,7 +69,7 @@ const SessionContextProvider = ({ children }) => {
     setIsAuthenticated(false);
     navigate("/");
   };
-  seEffect(() => {
+  useEffect(() => {
     const fetchTechnologies = async () => {
       try {
         const response = await fetch(
@@ -79,7 +79,7 @@ const SessionContextProvider = ({ children }) => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        setTechnologies(data);
+        setFetchedTechnologies(data);
       } catch (error) {
         console.error("Error fetching technologies:", error);
       }
@@ -98,7 +98,7 @@ const SessionContextProvider = ({ children }) => {
         userRole,
         setToken,
         handleLogout,
-        technologies,
+        fetchedTechnologies,
       }}
     >
       {children}

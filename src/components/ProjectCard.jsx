@@ -3,13 +3,26 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@mantine/core";
 import styles from "../styles/modules/ProjectCard.module.css";
 import { SessionContext } from "../contexts/SessionContext";
+import hand from "../assets/hand.png";
+
+const getTechnologyColor = (technologyTitle) => {
+  const colors = {
+    JavaScript: "#F7DF1E",
+    "Node.js": "#8CC84B",
+    MongoDB: "#47A248",
+    Express: "#000000",
+    // Add more technology colors here
+  };
+
+  return colors[technologyTitle] || "#D3D3D3"; // Default color if not found
+};
 
 const ProjectCard = ({ project }) => {
   const {
     title,
     imageUrl,
     description,
-    technology,
+    technologyIds,
     repos,
     status,
     _id,
@@ -17,27 +30,58 @@ const ProjectCard = ({ project }) => {
     collaborators,
   } = project;
 
-  const { token, isAuthenticated } = useContext(SessionContext);
+  const {
+    fetchedTechnologies = [],
+    token,
+    isAuthenticated,
+  } = useContext(SessionContext);
   const navigate = useNavigate();
 
-  // Truncate description if it is too long
+  console.log("Fetched Technologies:", fetchedTechnologies);
+
   const truncatedDescription =
     description.length > 140
       ? `${description.substring(0, 140)}...`
       : description;
 
-  // Handle view details click
   const handleViewDetails = () => {
     navigate(`/projects/${_id}`);
   };
 
-  // Extract technology title if technology is an object
-  const technologyTitle = technology?.title || "Unknown Technology";
+  // Map technology IDs to titles
+  const technologyMap = fetchedTechnologies.reduce((map, tech) => {
+    map[tech._id] = tech.title;
+    return map;
+  }, {});
+
+  const renderTechnologyLabels = () => {
+    if (!Array.isArray(technologyIds)) {
+      console.error("technologyIds is not an array", technologyIds);
+      return null;
+    }
+
+    return technologyIds.map((techId) => {
+      const technologyTitle = technologyMap[techId] || "Unknown Technology";
+      const color = getTechnologyColor(technologyTitle);
+
+      return (
+        <div
+          key={techId}
+          className={styles.technologyLabel}
+          style={{ backgroundColor: color }}
+        >
+          {technologyTitle}
+        </div>
+      );
+    });
+  };
 
   return (
     <div className={styles.card}>
-      <div className={styles.technologyLabel}>{technologyTitle}</div>
-      <img src={imageUrl} alt={title} className={styles.image} />
+      <div className={styles.technologiesContainer}>
+        {renderTechnologyLabels()}
+      </div>
+      <img src={imageUrl || hand} alt={title} className={styles.image} />
       <div className={styles.details}>
         <div className={styles.titleContainer}>
           <h2 className={styles.title}>{title}</h2>
