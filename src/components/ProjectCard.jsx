@@ -22,7 +22,7 @@ const ProjectCard = ({ project }) => {
     title,
     imageUrl,
     description,
-    technologyIds,
+    technology = [], // Use `technology` array from project
     repos,
     status,
     _id,
@@ -30,13 +30,10 @@ const ProjectCard = ({ project }) => {
     collaborators,
   } = project;
 
-  const {
-    fetchedTechnologies = [],
-    token,
-    isAuthenticated,
-  } = useContext(SessionContext);
+  const { fetchedTechnologies = [] } = useContext(SessionContext);
   const navigate = useNavigate();
 
+  console.log("Project Data:", project); // Log the entire project object to inspect its structure
   console.log("Fetched Technologies:", fetchedTechnologies);
 
   const truncatedDescription =
@@ -54,6 +51,11 @@ const ProjectCard = ({ project }) => {
     return map;
   }, {});
 
+  console.log("Technology Map:", technologyMap); // Log the map to ensure it's correctly populated
+
+  // Extract IDs from the `technology` array in the project data
+  const technologyIds = technology.map((tech) => tech._id);
+
   const renderTechnologyLabels = () => {
     if (!Array.isArray(technologyIds)) {
       console.error("technologyIds is not an array", technologyIds);
@@ -62,6 +64,8 @@ const ProjectCard = ({ project }) => {
 
     return technologyIds.map((techId) => {
       const technologyTitle = technologyMap[techId] || "Unknown Technology";
+      console.log(`Technology ID: ${techId}, Title: ${technologyTitle}`); // Log each technology ID and title
+
       const color = getTechnologyColor(technologyTitle);
 
       return (
