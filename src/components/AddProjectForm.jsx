@@ -63,6 +63,14 @@ function AddProjectForm() {
     fetchTechnologies();
   }, []);
 
+  // Function to split repos string into an array
+  const processRepos = (reposString) => {
+    return reposString
+      .split(/[\s,]+/) // Split by space or comma
+      .map((url) => url.trim()) // Remove any extra whitespace
+      .filter((url) => url.length > 0); // Remove empty strings
+  };
+
   const handleSubmit = async (values) => {
     try {
       const token = localStorage.getItem("authToken");
@@ -76,6 +84,12 @@ function AddProjectForm() {
         throw new Error("No technology options available");
       }
 
+      // Process repos before sending
+      const processedValues = {
+        ...values,
+        repos: processRepos(values.repos),
+      };
+
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/admin/projects`,
         {
@@ -84,7 +98,7 @@ function AddProjectForm() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(values), // Ensure `imageUrl` is part of `values`
+          body: JSON.stringify(processedValues), // Ensure `imageUrl` is part of `values`
         }
       );
 
@@ -134,7 +148,7 @@ function AddProjectForm() {
       <TextInput
         withAsterisk
         label="Repositories"
-        placeholder="Enter repository URLs"
+        placeholder="Enter repository URLs, separated by space or comma"
         {...form.getInputProps("repos")}
       />
       <MultiSelect
