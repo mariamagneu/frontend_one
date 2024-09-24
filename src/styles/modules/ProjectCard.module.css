@@ -97,6 +97,21 @@
   transition: color 0.3s, background-color 0.3s;
 }
 
+.repos {
+  margin: 12px 0;
+}
+
+.repoLink {
+  margin-right: 10px;
+  font-weight: bold;
+  color: #224eff;
+  text-decoration: none;
+}
+
+.repoLink:hover {
+  text-decoration: underline;
+}
+
 .favoriteBtn:hover {
   color: #224eff; /* Red color on hover */
   background-color: #f0f0f0;
