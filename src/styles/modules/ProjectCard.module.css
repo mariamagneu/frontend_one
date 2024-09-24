@@ -53,53 +53,25 @@
   white-space: normal;
 }
 
+.technologyContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
 .technologyLabel {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 8px 12px;
+  padding: 6px 10px;
   font-weight: bold;
   color: #ffffff;
-  border-bottom-right-radius: 12px;
+  background-color: #333;
+  border-radius: 6px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  display: inline-block;
+  white-space: nowrap;
 }
 
-/* .technologyLabel.electronics {
-  background-color: #ff8c8c;
-}
-
-.technologyLabel.beauty {
-  background-color: #ff8ce6;
-}
-
-.technologyLabel.music {
-  background-color: #9ca3ff;
-}
-
-.technologyLabel.tools {
-  background-color: #9aff9a;
-}
-
-.technologyLabel.clothes {
-  background-color: #f7e47b;
-}
-
-.technologyLabel.rooms-and-facilities {
-  background-color: #ffad8a;
-}
-
-.technologyLabel.outdoor-area {
-  background-color: #a2f2f2;
-}
-
-.technologyLabel.acts-of-service {
-  background-color: #c2b9f5;
-}
-
-.technologyLabel.vehicles {
-  background-color: #92c3fe;
-}
- */
 .status {
   font-size: 0.8em;
   margin-left: 8px;
