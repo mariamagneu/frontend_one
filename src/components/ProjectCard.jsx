@@ -11,10 +11,11 @@ const getTechnologyColor = (technologyTitle) => {
     "Node.js": "#8CC84B",
     MongoDB: "#47A248",
     Express: "#000000",
+    React: "#61DAFB",
     // Add more technology colors here
   };
 
-  return colors[technologyTitle] || "#D3D3D3"; // Default color if not found
+  return colors[technologyTitle] || "#D3D3D3";
 };
 
 const ProjectCard = ({ project }) => {
@@ -22,7 +23,7 @@ const ProjectCard = ({ project }) => {
     title,
     imageUrl,
     description,
-    technology = [], // Use `technology` array from project
+    technology = [],
     repos,
     status,
     _id,
@@ -32,9 +33,6 @@ const ProjectCard = ({ project }) => {
 
   const { fetchedTechnologies = [] } = useContext(SessionContext);
   const navigate = useNavigate();
-
-  console.log("Project Data:", project); // Log the entire project object to inspect its structure
-  console.log("Fetched Technologies:", fetchedTechnologies);
 
   const truncatedDescription =
     description.length > 140
@@ -51,21 +49,12 @@ const ProjectCard = ({ project }) => {
     return map;
   }, {});
 
-  console.log("Technology Map:", technologyMap); // Log the map to ensure it's correctly populated
-
   // Extract IDs from the `technology` array in the project data
   const technologyIds = technology.map((tech) => tech._id);
 
   const renderTechnologyLabels = () => {
-    if (!Array.isArray(technologyIds)) {
-      console.error("technologyIds is not an array", technologyIds);
-      return null;
-    }
-
     return technologyIds.map((techId) => {
       const technologyTitle = technologyMap[techId] || "Unknown Technology";
-      console.log(`Technology ID: ${techId}, Title: ${technologyTitle}`); // Log each technology ID and title
-
       const color = getTechnologyColor(technologyTitle);
 
       return (
@@ -82,10 +71,10 @@ const ProjectCard = ({ project }) => {
 
   return (
     <div className={styles.card}>
-      <div className={styles.technologiesContainer}>
-        {renderTechnologyLabels()}
-      </div>
+      {/* Keep the image at the top */}
       <img src={imageUrl || hand} alt={title} className={styles.image} />
+
+      {/* Card text content */}
       <div className={styles.details}>
         <div className={styles.titleContainer}>
           <h2 className={styles.title}>{title}</h2>
@@ -95,6 +84,12 @@ const ProjectCard = ({ project }) => {
         <p className={styles.repos}>Repos: {repos}</p>
         <p className={styles.author}>Author: {author}</p>
         <p className={styles.collaborators}>Collaborators: {collaborators}</p>
+
+        {/* Render technologies below repos */}
+        <div className={styles.technologyContainer}>
+          {renderTechnologyLabels()}
+        </div>
+
         <div className={styles.buttonContainer}>
           <Button
             onClick={handleViewDetails}
