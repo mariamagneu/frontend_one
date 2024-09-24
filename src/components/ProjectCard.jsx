@@ -24,7 +24,7 @@ const ProjectCard = ({ project }) => {
     imageUrl,
     description,
     technology = [],
-    repos,
+    repos = [],
     status,
     _id,
     author,
@@ -52,6 +52,7 @@ const ProjectCard = ({ project }) => {
   // Extract IDs from the `technology` array in the project data
   const technologyIds = technology.map((tech) => tech._id);
 
+  // Render technologies
   const renderTechnologyLabels = () => {
     return technologyIds.map((techId) => {
       const technologyTitle = technologyMap[techId] || "Unknown Technology";
@@ -69,6 +70,21 @@ const ProjectCard = ({ project }) => {
     });
   };
 
+  // Render shortened repo links
+  const renderRepoLinks = () => {
+    return repos.map((repo, index) => (
+      <a
+        key={index}
+        href={repo}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.repoLink}
+      >
+        {`Link ${index + 1}`}
+      </a>
+    ));
+  };
+
   return (
     <div className={styles.card}>
       {/* Keep the image at the top */}
@@ -81,7 +97,10 @@ const ProjectCard = ({ project }) => {
           <p className={styles.status}>{status}</p>
         </div>
         <p className={styles.description}>{truncatedDescription}</p>
-        <p className={styles.repos}>Repos: {repos}</p>
+
+        {/* Render repo links */}
+        <div className={styles.repos}>Repos: {renderRepoLinks()}</div>
+
         <p className={styles.author}>Author: {author}</p>
         <p className={styles.collaborators}>Collaborators: {collaborators}</p>
 
