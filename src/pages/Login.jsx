@@ -5,6 +5,7 @@ import {
   Paper,
   Title,
   Container,
+  Text,
 } from "@mantine/core";
 import { useState, useContext, useEffect } from "react";
 import { SessionContext } from "../contexts/SessionContext";
@@ -69,8 +70,14 @@ function LoginPage() {
   const handleCreateNewAccount = () => {
     navigate("/signup");
   };
+
   return (
     <Container size={420} my={40}>
+      {/* New message to inform users */}
+      <Text align="center" color="dimmed" size="sm" mb="md">
+        You need to sign up or log in to view the projects.
+      </Text>
+
       <Title align="center">Login</Title>
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
         <form onSubmit={handleSubmit}>
