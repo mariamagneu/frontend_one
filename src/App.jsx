@@ -6,6 +6,7 @@ import LoginPage from "./pages/Login";
 import TestComponent from "./components/testcomponent";
 import SignUpPage from "./pages/Signup";
 import Projects from "./pages/Projects";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -17,7 +18,14 @@ function App() {
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/test" element={<TestComponent />}></Route>
           <Route path="/signup" element={<SignUpPage />}></Route>
-          <Route path="/projects" element={<Projects />}></Route>
+          <Route
+            path="/projects"
+            element={
+              <PrivateRoute>
+                <Projects />
+              </PrivateRoute>
+            }
+          ></Route>
         </Routes>
       </main>
       <Footer />
