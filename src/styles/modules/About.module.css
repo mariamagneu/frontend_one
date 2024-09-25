@@ -1,0 +1,28 @@
+.aboutMeContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.profileImage {
+  width: 100%;
+  height: auto;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  border-radius: 8px; /* Matches the Mantine 'md' radius */
+}
+
+.textContainer {
+  text-align: left;
+}
+
+h1 {
+  margin-bottom: 16px;
+}
+
+p {
+  margin: 0 0 16px;
+}
