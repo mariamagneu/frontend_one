@@ -40,9 +40,7 @@ main {
   margin-left: 20px;
 }
 
-.borrowLink,
-.favoritesLink,
-.shareLink,
+.projectLink,
 .aboutLink {
   /* Add styling for About link */
   text-decoration: none;

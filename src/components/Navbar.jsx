@@ -7,7 +7,7 @@ import hand1 from "../assets/hand1.png";
 import { SessionContext } from "../contexts/SessionContext";
 
 function Navbar() {
-  const { isAuthenticated, userId, token, handleLogout } =
+  const { isAuthenticated, userId, token, handleLogout, userRole } =
     useContext(SessionContext);
   const [user, setUser] = useState(null);
 
@@ -51,9 +51,13 @@ function Navbar() {
         <Link to="/about" className={styles.aboutLink}>
           ABOUT
         </Link>
-        <Link to="/projects" className={styles.borrowLink}>
+        <Link to="/projects" className={styles.projectLink}>
           PROJECTS
         </Link>
+        {/*         {userRole = "Admin" ? <Link
+      to="/newtech"
+      className={styles.newRech}
+    variant} */}
       </div>
 
       <div className={styles.buttonContainer}>
