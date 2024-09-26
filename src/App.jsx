@@ -8,6 +8,7 @@ import SignUpPage from "./pages/Signup";
 import Projects from "./pages/Projects";
 import PrivateRoute from "./components/PrivateRoute";
 import About from "./pages/About";
+import Tech from "./pages/Tech";
 
 function App() {
   return (
@@ -25,6 +26,14 @@ function App() {
             element={
               <PrivateRoute>
                 <Projects />
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
+            path="/tech"
+            element={
+              <PrivateRoute>
+                <Tech />{" "}
               </PrivateRoute>
             }
           ></Route>

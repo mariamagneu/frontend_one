@@ -1,0 +1,61 @@
+.card {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  background-color: #ffffff;
+  max-width: 300px;
+  margin: 16px;
+  position: relative;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.versionBadge {
+  font-size: 0.75rem;
+  background-color: #61dafb;
+}
+
+.details {
+  margin-top: 12px;
+}
+
+.knowledgeBadge {
+  padding: 0 8px;
+  border-radius: 4px;
+}
+
+.buttonContainer {
+  margin-top: 12px;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .image {
+    height: 150px;
+  }
+  .card {
+    margin: 8px;
+  }
+}
