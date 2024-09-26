@@ -50,7 +50,7 @@ main {
 }
 
 .projectLink:hover,
-.favoritesLink:hover,
+.newTechLink:hover,
 .shareLink:hover,
 .aboutLink:hover {
   color: black;
