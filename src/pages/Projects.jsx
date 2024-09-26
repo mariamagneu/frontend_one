@@ -6,7 +6,7 @@ import { SessionContext } from "../contexts/SessionContext";
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
-  const { userRole } = useContext(SessionContext);
+  const { userRole, isTechnologiesLoading } = useContext(SessionContext); // Access the loading state
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -27,9 +27,12 @@ const Projects = () => {
     fetchProjects();
   }, []);
 
+  if (isTechnologiesLoading) {
+    return <p>Loading technologies...</p>;
+  }
+
   return (
     <div className={styles.page}>
-      {/* Conditionally render the form if the user is an admin */}
       {userRole === "Admin" && <AddProjectForm />}
 
       <div className={styles.container}>
