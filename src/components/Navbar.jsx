@@ -54,16 +54,6 @@ function Navbar() {
         <Link to="/projects" className={styles.borrowLink}>
           PROJECTS
         </Link>
-        {isAuthenticated && (
-          <>
-            <Link to="/projects" className={styles.favoritesLink}>
-              FAVORITES
-            </Link>
-            {/*             <Link to="/newitem" className={styles.shareLink}>
-              SHARE
-            </Link> */}
-          </>
-        )}
       </div>
 
       <div className={styles.buttonContainer}>
