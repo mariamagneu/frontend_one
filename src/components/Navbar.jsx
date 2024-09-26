@@ -54,11 +54,9 @@ function Navbar() {
         <Link to="/projects" className={styles.projectLink}>
           PROJECTS
         </Link>
-        {userRole === "Admin" && (
-          <Link to="/newtech" className={styles.newTechLink}>
-            ADD NEW TECH SKILL
-          </Link>
-        )}
+        <Link to="/tech" className={styles.newTechLink}>
+          TECHNOLOGIES{" "}
+        </Link>
       </div>
 
       <div className={styles.buttonContainer}>
