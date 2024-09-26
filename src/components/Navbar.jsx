@@ -54,10 +54,11 @@ function Navbar() {
         <Link to="/projects" className={styles.projectLink}>
           PROJECTS
         </Link>
-        {/*         {userRole = "Admin" ? <Link
-      to="/newtech"
-      className={styles.newRech}
-    variant} */}
+        {userRole === "Admin" && (
+          <Link to="/newtech" className={styles.newTechLink}>
+            ADD NEW TECH SKILL
+          </Link>
+        )}
       </div>
 
       <div className={styles.buttonContainer}>

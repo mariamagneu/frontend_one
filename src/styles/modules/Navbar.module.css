@@ -41,14 +41,15 @@ main {
 }
 
 .projectLink,
-.aboutLink {
+.aboutLink,
+.newTechLink {
   /* Add styling for About link */
   text-decoration: none;
   color: #224eff;
   font-weight: bold;
 }
 
-.borrowLink:hover,
+.projectLink:hover,
 .favoritesLink:hover,
 .shareLink:hover,
 .aboutLink:hover {
