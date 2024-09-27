@@ -8,7 +8,8 @@ import { SessionContext } from "../contexts/SessionContext";
 
 function AddTechForm() {
   const navigate = useNavigate();
-  const { fetchedTechnologies } = useContext(SessionContext);
+  const { fetchedTechnologies, setFetchedTechnologies } =
+    useContext(SessionContext);
 
   const form = useForm({
     initialValues: {
@@ -32,11 +33,6 @@ function AddTechForm() {
         throw new Error("No authentication token found");
       }
 
-      if (!fetchedTechnologies.length) {
-        console.error("No technology options available");
-        throw new Error("No technology options available");
-      }
-
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/admin/technologies`,
         {
@@ -52,11 +48,25 @@ function AddTechForm() {
       if (!response.ok) {
         const error = await response.text();
         console.error("Failed to create technology:", error);
-        throw new Error("Failed to create technology"); // Fixed typo
+        throw new Error("Failed to create technology");
       }
 
       const data = await response.json();
       console.log("Technology created:", data);
+
+      const updatedTechnologiesResponse = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/technologies`, // Correct API URL to fetch all technologies
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const updatedTechnologies = await updatedTechnologiesResponse.json();
+
+      setFetchedTechnologies(updatedTechnologies);
+
       navigate("/tech");
     } catch (error) {
       console.error("Error:", error);
