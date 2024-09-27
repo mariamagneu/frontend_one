@@ -104,6 +104,7 @@ const SessionContextProvider = ({ children }) => {
         handleLogout,
         fetchedTechnologies,
         isTechnologiesLoading,
+        setFetchedTechnologies,
       }}
     >
       {children}

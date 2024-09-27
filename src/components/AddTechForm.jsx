@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Select, Button, TextInput, Group } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { DatePicker } from "@mantine/dates";
-
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/modules/AddProjectForm.module.css";
 import { SessionContext } from "../contexts/SessionContext";
@@ -15,7 +14,7 @@ function AddTechForm() {
     initialValues: {
       title: "",
       version: "",
-      firstContact: Date,
+      firstContact: null, // Corrected default value
       knowledge: "",
     },
     validate: {
@@ -25,7 +24,6 @@ function AddTechForm() {
       knowledge: (value) => (value ? null : "Knowledge type is required"),
     },
   });
-
   const handleSubmit = async (values) => {
     try {
       const token = localStorage.getItem("authToken");
@@ -54,12 +52,12 @@ function AddTechForm() {
       if (!response.ok) {
         const error = await response.text();
         console.error("Failed to create technology:", error);
-        throw new Error("Failed to create technologu");
+        throw new Error("Failed to create technology"); // Fixed typo
       }
 
       const data = await response.json();
       console.log("Technology created:", data);
-      navigate("/technologies");
+      navigate("/tech");
     } catch (error) {
       console.error("Error:", error);
     }
@@ -72,8 +70,8 @@ function AddTechForm() {
     >
       <TextInput
         withAsterisk
-        label="Technolgy Title"
-        placeholder="Enter the Name of the tech skill aquired"
+        label="Technology Title"
+        placeholder="Enter the Name of the tech skill acquired"
         {...form.getInputProps("title")}
       />
       <TextInput
@@ -99,8 +97,9 @@ function AddTechForm() {
         ]}
         {...form.getInputProps("knowledge")}
       />
-
-      <Group justify="flex-end" mt="md">
+      <Group position="right" mt="md">
+        {" "}
+        {/* Corrected Group prop */}
         <Button type="submit" color="#224EFF">
           Submit
         </Button>
