@@ -67,6 +67,8 @@ function AddTechForm() {
 
       setFetchedTechnologies(updatedTechnologies);
 
+      form.reset();
+
       navigate("/tech");
     } catch (error) {
       console.error("Error:", error);
@@ -108,8 +110,6 @@ function AddTechForm() {
         {...form.getInputProps("knowledge")}
       />
       <Group position="right" mt="md">
-        {" "}
-        {/* Corrected Group prop */}
         <Button type="submit" color="#224EFF">
           Submit
         </Button>
