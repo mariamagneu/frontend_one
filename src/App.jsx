@@ -9,6 +9,7 @@ import Projects from "./pages/Projects";
 import PrivateRoute from "./components/PrivateRoute";
 import About from "./pages/About";
 import Tech from "./pages/Tech";
+import AboutDashboard from "./pages/AboutDashboard";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
-          <Route path="/about" element={<About />}></Route>
+          <Route path="/about" element={<AboutDashboard />}></Route>
           <Route path="/test" element={<TestComponent />}></Route>
           <Route path="/signup" element={<SignUpPage />}></Route>
           <Route
